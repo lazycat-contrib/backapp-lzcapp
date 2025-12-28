@@ -1,0 +1,52 @@
+# BackApp - Backup Automation over SSH
+# UI for Backup automation over SSH, replacing custom shell scripts and cron configurations
+# Binary < 50 MB
+
+name: BackApp
+package: cloud.lazycat.app.backapp
+version: 0.5.1
+min_os_version: 1.3.8
+description: "UI for Backup automation over SSH, replacing custom shell scripts and cron configurations"
+license: MIT
+homepage: https://github.com/dennis960/backapp
+author: dennis960
+
+application:
+  subdomain: backapp
+  upstreams:
+    - location: /
+      backend: http://backapp:8080/
+
+services:
+  backapp:
+    # ghcr.io/dennis960/backapp:latest
+    image: registry.lazycat.cloud/czyt/dennis960/backapp:d1007328a96bc001
+    restart: unless-stopped
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - wget -qO- http://localhost:8080/health || exit 1
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+    binds:
+      - /lzcapp/var/backapp-data:/data
+      - /lzcapp/var/backups/app:/var/backups/app
+      - /lzcapp/var/backups/archive:/var/backups/archive
+    cpu_shares: 512
+    mem_limit: 512M
+    entrypoint: sh -c "cd /data &&exec /app/app -port=8080"
+
+locales:
+  en:
+    name: "BackApp"
+    description: "UI for Backup automation over SSH, replacing custom shell scripts and cron configurations"
+  zh:
+    name: "BackApp"
+    description: "基于 SSH 的备份自动化工具，替代自定义 Shell 脚本和 Cron 配置，二进制文件小于 50 MB"
+
+unsupported_platforms:
+  - ios
+  - android
+  - tvos

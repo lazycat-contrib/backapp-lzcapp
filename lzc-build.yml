@@ -1,0 +1,18 @@
+# BackApp Build Configuration
+# 指向 manifest 文件和输出配置
+
+manifest: ./lzc-manifest.yml
+pkgout: ./
+icon: ./icon.png
+
+# compose_override - 覆盖不支持的 Docker Compose 参数
+# 注意：此部分仅在有需要覆盖的参数时才生成
+# BackApp 使用标准参数，无需覆盖
+# compose_override:
+#   services:
+#     backapp:
+#       # 如果需要挂载特殊设备或非标准卷，可以在这里配置
+#       # devices:
+#       #   - /dev/ttyUSB0:/dev/ttyUSB0
+#       # volumes:
+#       #   - /var/run/docker.sock:/var/run/docker.sock
