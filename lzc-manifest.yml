@@ -3,11 +3,10 @@ application:
   upstreams:
     - location: /
       backend: http://backapp:8080/
-
 services:
   backapp:
-    # upstream: ghcr.io/dennis960/backapp:latest
-    image: ghcr.io/dennis960/backapp:latest
+    # upstream: ghcr.io/dennis960/backapp:latest@sha256:39194b52341a04f6a7127e0b153c76d3abe51d7a32dc23de932f0ba528dac6bc
+    image: registry.lazycat.cloud/czyt/dennis960/backapp:83d8daa7c2d9e739
     restart: unless-stopped
     healthcheck:
       test:
