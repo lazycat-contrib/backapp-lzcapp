@@ -5,8 +5,8 @@ application:
       backend: http://backapp:8080/
 services:
   backapp:
-    # upstream: ghcr.io/dennis960/backapp:latest@sha256:bcf2ad54d6fc2041a8681e0bca2d55e4b57845c2c65cc59a2c9f63778e1be38e
-    image: registry.lazycat.cloud/czyt/dennis960/backapp:6cc7266a53418de8
+    # upstream: ghcr.io/dennis960/backapp:latest@sha256:a1638e29f42295d8514eeaf8256f11e184b43a4ab1355a27d64b9545278807e7
+    image: registry.lazycat.cloud/czyt/dennis960/backapp:cf29cac7465d2a6d
     restart: unless-stopped
     healthcheck:
       test:
